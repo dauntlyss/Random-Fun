@@ -1,0 +1,34 @@
+1.)    Something To Do App
+a.       Using the Bored API to generate an activity based on the parameters given, then use Youtube’s API to suggest videos for them to get started/get inspired from.
+i.      https://www.boredapi.com/
+ ii.      https://developers.google.com/youtube/v3
+
+The goal of this web application will be to help bored people find entertaining activities to do.
+Anyone who may be bored or looking for something to do with friends will find this app useful. 
+The apis above will be used and I plan to use the Bored API to generate a random activity, then use the youtube API to search for videos involving that activity to inspire the user.
+
+SCHEMA 
+users table:
+id
+username
+password
+
+activities table:
+
+user_id 
+Activity type
+Activity name
+Completed
+Rating
+
+
+POTENTIAL ISSUES - The bored API may be limited in the amount of activities that are preloaded. The youtube api may have a steeper learning curve.
+
+SECURITY ISSUES - I need to secure users passwords.
+
+FUNCTIONALITY - Users will be able to log in and from there see the activities they have completed and the activities they have starred as wanting to complete. They will also be able to add activities to a list of wanting-to-complete. Users will be able to rate completed activities based on how fun they were. Users will also be able to add their own ideas to the list and search for inspiration via the youtube api.
+
+USER FLOW - Users will login and see their activity dashboard. Once an activity is selected, they will be able to click get inspiration which will fire the youtube api to return results for videos that will inspire them to get started. 
+
+ADDITIONAL FEATURES - Adding things to a list, favoriting activities, searching for inspiration via the youtube api and marking activities complete.
+
