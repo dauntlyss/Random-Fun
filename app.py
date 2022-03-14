@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_debugtoolbar import DebugToolbarExtension
-# from models import connect_db, db
+from models import connect_db, db
 # from forms import LoginForm, RegisterForm, DeleteForm, FeedbackForm
 # from werkzeug.exceptions import Unauthorized
 
@@ -14,8 +14,8 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)
 
-# connect_db(app)
-# db.create_all()
+connect_db(app)
+db.create_all()
 
 @app.route('/')
 def home_page():
