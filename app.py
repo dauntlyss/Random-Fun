@@ -41,7 +41,7 @@ def generate():
 def show_activity():
     """Shows generated Activity."""
     
-    type = "recreational"
+    type = "busywork"
     res = requests.get(f"{BORED_API_BASE_URL}", params={'type': type})
     data = res.json()
     activity = data["activity"]

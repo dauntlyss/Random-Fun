@@ -13,7 +13,7 @@ TYPES = [('All', 'All'), ('Busywork', 'Busywork'), ('Charity', 'Charity'), ('Coo
 class GenerateActivityForm(FlaskForm):
     """Form for generating activities."""
 
-    activity = SelectField("Activity Type", choices=TYPES)
+    activity = SelectField("type", choices=TYPES)
     accessible = BooleanField("Accessible Activity")
 
 # class UserEditForm(FlaskForm):

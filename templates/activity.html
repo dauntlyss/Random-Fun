@@ -1,11 +1,50 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row custom-section d-flex align-items-center">
+<div class="row">
+    {% if activity_info %} 
+    <div class="col-4">
+        <div class="card">
+            <img src="/static/images/activity.jpeg" alt="Thinking cartoon" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Your Activity</h5>
+                <p class="card-text">{{activity_info['activity']}}</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="/static/images/price.jpeg" alt="Thinking cartoon" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Activity Type</h5>
+                <p class="card-text">{{activity_info['type']}}</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="/static/images/price.jpeg" alt="Thinking cartoon" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Activity Price</h5>
+                <p class="card-text">{{activity_info['price']}}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+
+
+<!-- <div class="row custom-section d-flex align-items-center">
     <div class="col-12 col-lg-4">
         {% if activity_info %} 
         <h2>
-            Activity:  {{activity_info['activity']}}
+            {{activity_info['activity']}}
         </h2>
         <h2>
             Type:  {{activity_info['type']}}
@@ -19,6 +58,6 @@
     <div class="col-12 col-lg-8">
         
     </div>
-</div>
+</div> -->
 
 {% endblock %}
