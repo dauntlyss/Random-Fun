@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, SelectField, BooleanField
-from wtforms.validators import DataRequired, Email, Length
+from wtforms import StringField, PasswordField, TextAreaField, SelectField, BooleanField, DecimalField
+from wtforms.validators import DataRequired, Email, Length, NumberRange
 
 # ---May use to allow user to add activites to db---
 # class MessageForm(FlaskForm):
@@ -14,6 +14,7 @@ class GenerateActivityForm(FlaskForm):
     """Form for generating activities."""
 
     activity = SelectField("type", choices=TYPES)
+    minprice = DecimalField("minprice", validators=[NumberRange(min=0, max=1, message='value between 0 and 1')],render_kw={"placeholder": "0-1"} )
     accessible = BooleanField("Accessible Activity")
 
 # class UserEditForm(FlaskForm):
