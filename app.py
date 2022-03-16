@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db
 from forms import GenerateActivityForm
@@ -27,4 +27,16 @@ def generate():
 
     form = GenerateActivityForm()
 
+    if form.validate_on_submit():
+        
+
+        return redirect(f"/activity")
+
     return render_template('generate.html', form=form)
+
+@app.route('/activity', methods=["GET"])
+def show_activity():
+    """Shows generated Activity."""
+    
+    
+    return render_template('activity.html')
