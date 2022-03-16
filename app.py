@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db
-# from forms import LoginForm, RegisterForm, DeleteForm, FeedbackForm
+from forms import GenerateActivityForm
 # from werkzeug.exceptions import Unauthorized
 
 app = Flask(__name__)
@@ -20,3 +20,11 @@ db.create_all()
 @app.route('/')
 def home_page():
     return render_template("home.html")
+
+@app.route('/generate', methods=["GET", "POST"])
+def generate():
+    """Generates Activity."""
+
+    form = GenerateActivityForm()
+
+    return render_template('generate.html', form=form)
