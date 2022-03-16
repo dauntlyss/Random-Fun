@@ -36,29 +36,31 @@ class Activity(db.Model):
         primary_key=True,
     )
 
-    activity = db.Column(
+    name = db.Column(
         db.Text,
         nullable=False,
     )
 
-    timestamp = db.Column(
-        db.DateTime,
-        nullable=False,
-        default=datetime.utcnow(),
-    )
-
-    activityRecommended = db.Column(
-        db.Integer,
-        primary_key=True,
-    )
-
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete='CASCADE'),
+    type = db.Column(
+        db.Text,
         nullable=False,
     )
 
-    user = db.relationship('User')
+    participants = db.Column(
+        db.Integer,
+        nullable=False,
+    )
+
+    accesibility = db.Column(
+        db.Text,
+        nullable=False,
+    )
+
+    price = db.Column(
+        db.Float,
+        nullable=False,
+    )
+
 
 class Recommendations(db.Model):
     """Mapping user likes to activities."""
@@ -77,7 +79,22 @@ class Recommendations(db.Model):
 
     activity_id = db.Column(
         db.Integer,
-        db.ForeignKey('activity.id', ondelete='cascade'),
+        db.ForeignKey('activities.id', ondelete='cascade'),
+        unique=True
+    )
+
+    complete = db.Column(
+        db.Boolean,
+        unique=True
+    )
+
+    rating = db.Column(
+        db.Integer,
+        unique=True
+    )
+
+    comment = db.Column(
+        db.Text,
         unique=True
     )
 
@@ -127,41 +144,15 @@ class User(db.Model):
         nullable=False,
     )
 
-    activities = db.relationship('Activity')
-
-    # followers = db.relationship(
-    #     "User",
-    #     secondary="follows",
-    #     primaryjoin=(Follows.user_being_followed_id == id),
-    #     secondaryjoin=(Follows.user_following_id == id)
-    # )
-
-    # following = db.relationship(
-    #     "User",
-    #     secondary="follows",
-    #     primaryjoin=(Follows.user_following_id == id),
-    #     secondaryjoin=(Follows.user_being_followed_id == id)
-    # )
-
-    recommended = db.relationship(
+    activities = db.relationship(
         'Activity',
-        secondary="recommendations"
+        secondary="recommendations",
+        cascade="delete, all"
     )
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
 
-    # def is_followed_by(self, other_user):
-    #     """Is this user followed by `other_user`?"""
-
-    #     found_user_list = [user for user in self.followers if user == other_user]
-    #     return len(found_user_list) == 1
-
-    # def is_following(self, other_user):
-    #     """Is this user following `other_use`?"""
-
-    #     found_user_list = [user for user in self.following if user == other_user]
-    #     return len(found_user_list) == 1
 
     @classmethod
     def signup(cls, username, email, password, image_url):

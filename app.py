@@ -9,7 +9,7 @@ BORED_API_BASE_URL = "https://www.boredapi.com/api/activity/"
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///flask-feedback'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///random-fun'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config["SECRET_KEY"] = "girlslovebeyonce"
@@ -31,7 +31,6 @@ def generate():
     form = GenerateActivityForm()
 
     if form.validate_on_submit():
-    
 
         return redirect(f"/activity")
 
