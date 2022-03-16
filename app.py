@@ -1,8 +1,11 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db
 from forms import GenerateActivityForm
+import requests
 # from werkzeug.exceptions import Unauthorized
+
+BORED_API_BASE_URL = "https://www.boredapi.com/api/activity/"
 
 app = Flask(__name__)
 
@@ -28,7 +31,7 @@ def generate():
     form = GenerateActivityForm()
 
     if form.validate_on_submit():
-        
+    
 
         return redirect(f"/activity")
 
@@ -38,5 +41,21 @@ def generate():
 def show_activity():
     """Shows generated Activity."""
     
-    
-    return render_template('activity.html')
+    type = "recreational"
+    res = requests.get(f"{BORED_API_BASE_URL}", params={'type': type})
+    data = res.json()
+    activity = data["activity"]
+    price = data["price"]
+    type = data["type"]
+
+    if price >= .8:
+        price = '$$$$'
+    elif price >= .6:
+        price = '$$$'
+    elif price >= .4:
+        price = '$$'
+    else:
+        price = '$'
+        
+    activity_info = {'activity': activity, 'price': price, 'type': type}
+    return render_template('activity.html', activity_info=activity_info)
