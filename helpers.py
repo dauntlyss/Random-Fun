@@ -12,3 +12,4 @@ def get_activity_by_type(type):
         response= requests.get(f"{BASE_URL}/activity?type={type}")
         return response.json()
     return None
+

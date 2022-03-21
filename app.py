@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db
 from forms import GenerateActivityForm
@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///random-fun'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config["SECRET_KEY"] = "girlslovebeyonce"
+app.config["SECRET_K        EY"] = "girlslovebeyonce"
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 debug = DebugToolbarExtension(app)

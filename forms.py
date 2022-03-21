@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, SelectField, BooleanField, DecimalField
-from wtforms.validators import DataRequired, Email, Length, NumberRange
+from wtforms import SelectField, BooleanField, DecimalField
+from wtforms.validators import NumberRange
 
 # ---May use to allow user to add activites to db---
 # class MessageForm(FlaskForm):
