@@ -13,8 +13,8 @@ TYPES = [('All', 'All'), ('Busywork', 'Busywork'), ('Charity', 'Charity'), ('Coo
 class GenerateActivityForm(FlaskForm):
     """Form for generating activities."""
 
-    activity = SelectField("type", choices=TYPES)
-    minprice = DecimalField("minprice", validators=[NumberRange(min=0, max=1, message='value between 0 and 1')],render_kw={"placeholder": "0-1"} )
+    activity = SelectField("Type", choices=TYPES)
+    minprice = DecimalField("Minimum Price", validators=[NumberRange(min=0, max=1, message='value between 0 and 1')],render_kw={"placeholder": "0-1"} )
     accessible = BooleanField("Accessible Activity")
 
 # class UserEditForm(FlaskForm):
