@@ -1,3 +1,4 @@
+from cgitb import reset
 import requests
 from googleapiclient.discovery import build
 
@@ -11,6 +12,7 @@ def get_random_activity():
     return response.json()
 
 def get_activity_by_type(type):
+    type=type.lower()
     if type in AVAILABLE_TYPES:
         response= requests.get(f"{BASE_URL}/activity?type={type}")
         return response.json()
@@ -37,14 +39,15 @@ def get_videos(q, max_results):
     )
 
     response = request.execute()
-    
-    # print(response)
-    # print('*********')
-    # print(response['items'][1]['snippet']['title'])
-    # videoid = response['items'][0]['id']['videoId']
-    # video_ids = [videoid for videos in response]
-    # print(video_ids)
-    return response
+    return postprocess_videos(response)
+
+
+
+def postprocess_videos(object):
+    result=[]
+    for item in  object['items']:
+        result.append({"title":item['snippet']['title'], "id":item['id']['videoId']})
+    return result
 
 
 
