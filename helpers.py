@@ -15,7 +15,20 @@ def get_activity_by_type(type):
         response= requests.get(f"{BASE_URL}/activity?type={type}")
         return response.json()
     return None
-    
+
+def determine_price(price):
+    if price >= .8:
+        print('getting in')
+        price = '$$$$'
+    elif price >= .6:
+        price = '$$$'
+    elif price >= .4:
+        price = '$$'
+    else:
+        price = '$' 
+
+    return price   
+
 def get_videos(q, max_results):
     request = youtube.search().list(
         part='snippet', 
@@ -24,9 +37,14 @@ def get_videos(q, max_results):
     )
 
     response = request.execute()
+    
     # print(response)
     # print('*********')
-    # print(response['items'][0]['snippet']['title'])
+    # print(response['items'][1]['snippet']['title'])
+    # videoid = response['items'][0]['id']['videoId']
+    # video_ids = [videoid for videos in response]
+    # print(video_ids)
+    return response
 
 
 
